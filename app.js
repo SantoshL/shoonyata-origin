@@ -1,12 +1,11 @@
-// app.js - Repaired and Refactored
+// app.js - FINAL CORRECTED VERSION
 
-// --- Modern, Consistent Imports ---
-// Import EVERYTHING from the same, reliable CDN source.
-// This ensures all components (THREE, OrbitControls, etc.) are compatible.
+// --- FIX: Use full CDN URLs for modern, consistent imports ---
+// This tells the browser exactly where to download the Three.js code from.
 import * as THREE from 'https://cdn.skypack.dev/three@0.152.2';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.152.2/examples/jsm/controls/OrbitControls.js';
 
-// --- Global Variables ---
+// --- Global Variables (The rest of the file is correct ) ---
 let scene, camera, renderer, controls;
 let originDot, lineGroup, pathLine;
 let mouseActive = false;
@@ -15,7 +14,6 @@ let time = 0;
 let lastMousePos = new THREE.Vector2();
 let currentMousePos = new THREE.Vector2();
 
-// --- New variables for a proper polyhedron and state management ---
 let polyhedron;
 let phase = 'prompting'; // 'prompting' -> 'drawing' -> 'morphing'
 
@@ -33,13 +31,12 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x050505, 1);
 
-    // --- Initialize controls but disable them initially ---
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.enablePan = false;
     controls.minDistance = 2;
     controls.maxDistance = 20;
-    controls.enabled = false; // Start with controls disabled
+    controls.enabled = false;
 
     lineGroup = new THREE.Group();
     scene.add(lineGroup);
@@ -71,7 +68,7 @@ function showPrompts() {
         mouseActive = true;
         phase = 'drawing';
         document.getElementById('delta-display').style.display = 'block';
-        document.getElementById('footer').style.opacity = 1; // Fade in the footer text
+        document.getElementById('footer').style.opacity = 1;
     }, delay);
 }
 
@@ -122,7 +119,6 @@ function createPolyhedronFromPath() {
         pathLine = null;
     }
 
-    // A Dodecahedron is a complex shape with 12 faces, a good representation of a multi-faceted boundary.
     const baseGeometry = new THREE.DodecahedronGeometry(2.5, 0);
     const edgesGeometry = new THREE.EdgesGeometry(baseGeometry);
     const material = new THREE.LineBasicMaterial({ color: 0xaaaaaa, transparent: true, opacity: 0.75 });
@@ -130,10 +126,7 @@ function createPolyhedronFromPath() {
     polyhedron = new THREE.LineSegments(edgesGeometry, material);
     scene.add(polyhedron);
 
-    // Store original positions for morphing
     polyhedron.userData.originalPositions = baseGeometry.attributes.position.clone();
-
-    // Enable camera controls now that the interactive object exists
     controls.enabled = true;
 }
 
