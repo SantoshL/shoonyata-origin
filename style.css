@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #e8e8e8;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+#canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+#observer {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5em;
+    color: #c0c0c0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+#prompts {
+    position: fixed;
+    top: 32%;
+    /* Further up, so dot below prompts */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    text-align: center;
+    pointer-events: none;
+}
+
+.prompt {
+    font-size: 2.2em;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#delta-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 1.15em;
+    color: #a0a0a0;
+    z-index: 20;
+    display: none;
+}
+
+#delta-value {
+    color: #3b82f6;
+    font-weight: 600;
+    margin-left: 0.5em;
+}
+
+#footer {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 20;
+    pointer-events: none;
+}
+
+#formula {
+    font-size: 2.5em;
+    font-family: 'Georgia', serif;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+#explanation {
+    font-size: 1.12em;
+    color: #a0a0a0;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
