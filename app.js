@@ -33,7 +33,6 @@ function init() {
     lineGroup = new THREE.Group();
     scene.add(lineGroup);
 
-    // White dot at origin
     const dotGeometry = new THREE.SphereGeometry(0.17, 32, 32);
     const dotMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
     originDot = new THREE.Mesh(dotGeometry, dotMaterial);
