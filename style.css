@@ -6,10 +6,12 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #0a0a0a;
+    background: #050505;
+    /* Slightly darker background for better contrast */
     color: #e8e8e8;
     overflow: hidden;
-    cursor: crosshair;
+    cursor: none;
+    /* Hide the default cursor */
 }
 
 #canvas {
@@ -26,16 +28,18 @@ body {
     position: fixed;
     top: 20px;
     left: 20px;
-    font-size: 1.5em;
+    font-size: 1.2em;
+    /* Adjusted size */
     color: #c0c0c0;
     z-index: 20;
     pointer-events: none;
+    opacity: 0.8;
 }
 
 #prompts {
     position: fixed;
-    top: 32%;
-    /* Further up, so dot below prompts */
+    top: 35%;
+    /* Centered vertically */
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 15;
@@ -49,6 +53,11 @@ body {
     letter-spacing: 0.05em;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
+    position: absolute;
+    /* Allow prompts to stack without pushing each other */
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #delta-display {
@@ -59,12 +68,17 @@ body {
     color: #a0a0a0;
     z-index: 20;
     display: none;
+    /* Hidden by default */
+    background-color: rgba(10, 10, 10, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 #delta-value {
     color: #3b82f6;
     font-weight: 600;
     margin-left: 0.5em;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #footer {
@@ -75,6 +89,9 @@ body {
     text-align: center;
     z-index: 20;
     pointer-events: none;
+    opacity: 0;
+    /* Start hidden, fade in later */
+    transition: opacity 2s ease-in-out;
 }
 
 #formula {
@@ -82,10 +99,11 @@ body {
     font-family: 'Georgia', serif;
     margin-bottom: 10px;
     color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 #explanation {
-    font-size: 1.12em;
+    font-size: 1.1em;
     color: #a0a0a0;
     max-width: 700px;
     margin: 0 auto;
